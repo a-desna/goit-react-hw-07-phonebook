@@ -1,0 +1,76 @@
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 101vw;
+  overflow-x: hidden
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  transition: color 150ms ease-out, background-color 150ms ease-out;
+}
+
+/* PHONEBOOK */
+
+.phonebook {
+  width: 400px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  font-weight: 700;
+  text-align: center;
+}
+
+.form {
+  border: 1px solid #7a4d1a;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.formBtn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.filterForm {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  border: 1px solid #bfc6cf;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.listItemName,
+.listItemNumber {
+  padding: 5px;
+}
+
+.listItemBtn {
+  display: block;
+  width: 70px;
+  margin-left: auto;
+}

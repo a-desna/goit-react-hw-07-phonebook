@@ -1,0 +1,102 @@
+/* THEME SWITCH */
+
+.container {
+  min-height: 100vh;
+}
+
+/* .lightTheme {
+  min-height: 100vh;
+  background-color: #fff;
+  color: #333333;
+}
+
+.darkTheme {
+  min-height: 100vh;
+  background-color: #333333;
+  color: #fff;
+} */
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 24px;
+}
+
+.themeSwitch {
+  display: flex;
+  align-items: center;
+  transition: color 150ms ease-in 0;
+}
+
+.themeSwitchIcon {
+  color: currentColor;
+  height: 26px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.switch {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  position: relative;
+  width: 64px;
+  height: 32px;
+  border-radius: 50em;
+  padding: 3px 0;
+}
+
+.switchInput,
+.switchLabel {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.switchInput {
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.switchInput:checked+.switchLabel {
+  background-color: #d3d3d4;
+}
+
+.switchInput:checked+.switchLabel+.switchMarker {
+  left: calc(100% - 29px);
+}
+
+.switchInput:focus+.switchLabel,
+.switchInput:active+.switchLabel {
+  box-shadow: 0 0 0 3px #2a6df433;
+}
+
+.switchLabel {
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  user-select: none;
+  background-color: #333;
+  border-radius: inherit;
+  z-index: 1;
+  transition: background-color 150ms;
+  cursor: pointer;
+}
+
+.switchMarker {
+  position: relative;
+  background-color: #fff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  left: 3px;
+  transition: left 200ms;
+  will-change: left;
+}
