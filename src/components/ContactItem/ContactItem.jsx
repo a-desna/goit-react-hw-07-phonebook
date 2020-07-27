@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import contactsActions from '../../redux/contacts/contactsActions';
+import contactsSelectors from '../../redux/contacts/contactsSelectors';
+import contactsOperations from '../../redux/contacts/contactsOperations';
 import styles from '../../styles/Phonebook.module.css';
 
 function ContactItem({ name, number, onDelete }) {
@@ -23,16 +24,14 @@ ContactItem.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const { items } = state.contacts;
-  const contact = items.find(contact => contact.id === ownProps.id);
-
+  const contact = contactsSelectors.getContactById(state, ownProps.id);
   return {
     ...contact,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onDelete: () => dispatch(contactsActions.deleteContact(ownProps.id)),
+  onDelete: () => dispatch(contactsOperations.deleteContact(ownProps.id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactItem);

@@ -4,13 +4,9 @@ import contactsActions from './contactsActions';
 
 const initialState = {
   contacts: {
-    items: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    items: [],
     filter: '',
+    isLoading: false,
   },
 };
 
@@ -23,15 +19,29 @@ const deleteContact = (state, { payload }) => {
 };
 
 const items = createReducer(initialState.contacts.items, {
-  [contactsActions.addContact]: addContact,
-  [contactsActions.deleteContact]: deleteContact,
+  [contactsActions.getContactSuccess]: (state, { payload }) => payload,
+  [contactsActions.addContactSuccess]: addContact,
+  [contactsActions.deleteContactSuccess]: deleteContact,
 });
 
-const filter = createReducer('', {
+const filter = createReducer(initialState.contacts.filter, {
   [contactsActions.filterContacts]: (state, { payload }) => payload,
+});
+
+const loading = createReducer(initialState.contacts.isLoading, {
+  [contactsActions.addContactRequest]: () => true,
+  [contactsActions.addContactSuccess]: () => false,
+  [contactsActions.addContactFailure]: () => false,
+  [contactsActions.getContactRequest]: () => true,
+  [contactsActions.getContactSuccess]: () => false,
+  [contactsActions.getContactFailure]: () => false,
+  [contactsActions.deleteContactSuccess]: () => false,
+  [contactsActions.deleteContactFailure]: () => false,
+  [contactsActions.deleteContactRequest]: () => true,
 });
 
 export default combineReducers({
   items,
   filter,
+  loading,
 });

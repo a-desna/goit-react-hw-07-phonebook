@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ContactItem from '../ContactItem/ContactItem';
+import contactsSelectors from '../../redux/contacts/contactsSelectors';
 import styles from '../../styles/Phonebook.module.css';
 
 function ContactList({ contacts }) {
@@ -17,21 +18,15 @@ function ContactList({ contacts }) {
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.number,
       name: PropTypes.string,
       number: PropTypes.string,
     }),
   ).isRequired,
 };
 
-const mapStateToProps = state => {
-  const { items, filter } = state.contacts;
-  const filteredContacts = items.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase()),
-  );
-  return {
-    contacts: filteredContacts,
-  };
-};
+const mapStateToProps = state => ({
+  contacts: contactsSelectors.getFilteredContacts(state),
+});
 
 export default connect(mapStateToProps)(ContactList);

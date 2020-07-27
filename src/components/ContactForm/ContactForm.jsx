@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import contactsActions from '../../redux/contacts/contactsActions';
-import styles from '../../styles/Phonebook.module.css';
+import contactsOperations from '../../redux/contacts/contactsOperations';
+import contactsSelectors from '../../redux/contacts/contactsSelectors';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import styles from '../../styles/Phonebook.module.css';
 
 class ContactForm extends Component {
   state = {
@@ -44,7 +45,7 @@ class ContactForm extends Component {
     const { name, number } = this.state;
     return (
       <form className={styles.form} onSubmit={this.handleSubmit}>
-        <p>Name</p>
+        <p>Name contact</p>
         <input
           type="text"
           name="name"
@@ -52,7 +53,7 @@ class ContactForm extends Component {
           value={name}
           onChange={this.handleInputChange}
         />
-        <p>Number</p>
+        <p>Number contact</p>
         <input
           type="text"
           name="number"
@@ -69,11 +70,11 @@ class ContactForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  contacts: state.contacts.items,
+  contacts: contactsSelectors.getContacts(state),
 });
 
 const mapDispatchToProps = {
-  onAddContact: contactsActions.addContact,
+  onAddContact: contactsOperations.addContact,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
